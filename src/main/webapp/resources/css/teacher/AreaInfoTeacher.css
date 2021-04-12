@@ -1,0 +1,52 @@
+.row-point {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+}
+
+.row-point:last-child {
+    border-bottom: 1px solid #999;
+}
+.row-use {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-top: none;
+}
+
+.row-use:first-child {
+    border-top: 1px solid #999;
+}
+.point-name {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.point-wrap a {
+
+}
+
+.area-img{
+    overflow: scroll;
+    height: 100px;
+}
+
+.point-text{
+    overflow-x:auto;
+}
+
+.edit-box{
+    background-color: aliceblue;
+}
+
+.row-area-use-detail{
+    text-align: center;
+}
+
+.name {
+    color: orange;
+}
+
+.order-number{
+    color: red;
+    text-align: center;
+}

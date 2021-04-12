@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perry.cnms.dao.AreaUseDao">
+    <select id="queryAreaUse" resultType="com.perry.cnms.entity.AreaUsing">
+        select area_use_id,area_id,teacher_id,group_id,start_time,end_time,area_use_state,update_time
+        from area_use_table
+        where area_use_state=1
+        <if test="teacherId !=null">and teacher_id=#{teacherId}</if>
+        <if test="areaId !=null">and area_id=#{areaId}</if>
+        <if test="groupId !=null">and group_id=#{groupId}</if>
+        <if test="areaUseId !=null">and area_use_id=#{areaUseId}</if>
+        order by start_time asc
+    </select>
+
+    <insert id="batchInsertAreaUsing" parameterType="java.util.List">
+        INSERT INTO `area_use_table`
+        ( `area_id`, `teacher_id`, `group_id`, `start_time`, `end_time`, `area_use_state`, `update_time`)
+        VALUES
+        <foreach collection="list" item="areaUsing" index="index" separator=",">
+            (
+            #{areaUsing.areaId},
+            #{areaUsing.teacherId},
+            #{areaUsing.groupId},
+            #{areaUsing.startTime},
+            #{areaUsing.endTime},
+            #{areaUsing.areaUseState},
+            #{areaUsing.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--同时执行多条语句需要开启设置：allowMultiQueries=true-->
+    <update id="updateAreaUse" parameterType="java.util.List">
+        <foreach collection="list" item="areaUsing" index="index" separator=";">
+            UPDATE `area_use_table`
+            <set>
+                <if test="areaUsing.startTime !=null">start_time=#{areaUsing.startTime},</if>
+                <if test="areaUsing.endTime !=null">end_time=#{areaUsing.endTime},</if>
+                <if test="areaUsing.areaUseState !=null">area_use_state=#{areaUsing.areaUseState},</if>
+                <if test="areaUsing.updateTime !=null">update_time=#{areaUsing.updateTime}</if>
+            </set>
+            where area_use_id=#{areaUsing.areaUseId}
+        </foreach>
+
+    </update>
+
+    <delete id="deleteAreaUse">
+        <foreach collection="list" item="areaUseId" index="index" separator=";">
+            delete from area_use_table where area_use_id=#{areaUseId}
+        </foreach>
+    </delete>
+
+
+</mapper>

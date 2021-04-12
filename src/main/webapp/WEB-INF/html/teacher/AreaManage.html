@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>控制网管理系统(T)</title>
+    <meta name="description" content="MSUI: Build mobile apps with simple HTML, CSS, and JS components.">
+    <meta name="author" content="Perry">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/resources/image/favicon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Google Web Fonts -->
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/resources/css/teacher/AreaManage.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div id="page-label-input" class="page">
+        <header class="bar bar-nav">
+            <a class="icon icon-app pull-left open-panel" data-panel=".panel-left"></a>
+            <h1 class="title">场地申请</h1>
+        </header>
+        <div class="content">
+
+            <div class="content-block-title">我的申请</div>
+            <div class="content-block">
+                <div class="row row-area">
+                    <div class="col-33">名称</div>
+                    <div class="col-33">使用班级</div>
+                    <!--<div class="col-25">查看</div>-->
+                    <div class="col-33">更改</div>
+                </div>
+                <div class="area-use-wrap">
+
+                </div>
+            </div>
+
+            <div class="content-block-title">场地列表</div>
+            <div class="content-block">
+                <div class="row row-area">
+                    <div class="col-33">名称</div>
+                    <div class="col-33">状态</div>
+                    <!--<div class="col-25">查看</div>-->
+                    <div class="col-33">场地申请</div>
+                </div>
+                <div class="area-wrap">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--</div>-->
+    <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p id="teacher-name" class="name">姓名</p>
+            <p></p>
+            <p><a href="/teacher/student-manage" class="close-panel">小组管理</a></p>
+            <p></p>
+            <p><a href="/teacher/area-manage" class="close-panel">场地申请</a></p>
+            <p></p>
+            <p><a href="/teacher/file-manage" class="close-panel">文件管理</a></p>
+            <p></p>
+            <p><a href="#" class="prompt-title-ok">密码修改</a></p>
+            <p></p>
+
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='/resources/js/teacher/AreaManage.js' charset='utf-8'></script>
+</body>
+</html>

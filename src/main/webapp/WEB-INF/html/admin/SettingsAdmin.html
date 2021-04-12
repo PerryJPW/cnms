@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>控制网管理系统(A)</title>
+    <meta name="description" content="MSUI: Build mobile apps with simple HTML, CSS, and JS components.">
+    <meta name="author" content="Perry">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/resources/image/favicon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Google Web Fonts -->
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+
+
+</head>
+<body>
+<div class="page-group">
+    <div id="page-label-input" class="page">
+        <header class="bar bar-nav">
+            <a class="icon icon-app pull-left open-panel" data-panel=".panel-left"></a>
+            <h1 class="title"> 设置</h1>
+        </header>
+        <div class="content">
+            <div class="content-block-title">设置</div>
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">管理员密码</div>
+                                <div class="item-input">
+                                    <input type="text" id="admin-pass" placeholder="密码" >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">XY限差(m)</div>
+                                <div class="item-input">
+                                    <input type="text" id="tolerance-xy" placeholder="0">
+                                </div>
+                                <!--<div class="item-title label" id="alpha"></div>-->
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">H限差(m)</div>
+                                <div class="item-input">
+                                    <input type="text" id="tolerance-h" placeholder="0">
+                                </div>
+                                <!--<div class="item-title label" id="alpha"></div>-->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list-block">
+                <ul>
+                    <!--验证码，kaptcha-->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">验证码</div>
+                                <input type="text" id="j_captcha" placeholder="验证码">
+                                <div class="item-input " id="captcha_img1">
+                                    <img id="captcha_img" alt="点击更换" title="点击更换" onclick="changeVerifyCode(this)"
+                                         src="/Kaptcha"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-100"><a href="#" class="button button-big button-fill button-success"
+                                           id="update">更新设置</a></div>
+                </div>
+            </div>
+
+            <div class="content-block-title">学期迭代，在输入框中输入“确认结束本学期”</div>
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">确认结束学期</div>
+                                <div class="item-input">
+                                    <input type="text" id="ensure-end" placeholder="请输入 确认结束本学期" >
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-100"><a href="#" class="button button-big button-fill button-danger"
+                                            id="end-term">结束本学期</a></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="just-for-refresh"></div>
+    <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>管理员</p>
+            <p></p>
+            <p><a href="/admin/area-admin" class="close-panel">场地管理</a></p>
+            <p></p>
+            <p><a href="/admin/point-admin" class="close-panel">控制点管理</a></p>
+            <p></p>
+            <p><a href="/admin/teacher-admin" class="close-panel">教师管理</a></p>
+            <p></p>
+            <p><a href="/admin/settings-admin" class="close-panel">设置管理</a></p>
+            <p></p>
+            <p></p>
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='/resources/js/admin/SettingsAdmin.js' charset='utf-8'></script>
+</body>
+</html>

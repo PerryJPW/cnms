@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perry.cnms.dao.PointDao">
+    <select id="queryPoint" resultType="com.perry.cnms.entity.Point">
+        select point_id,area_id,point_name,next_point,point_x,point_y,point_h,distance,point_state,update_time
+        from point_table
+    </select>
+
+    <insert id="batchInsertPoint" parameterType="java.util.List">
+
+        INSERT INTO `point_table`( `area_id`, `point_name`, `next_point`, `point_x`, `point_y`, `point_h`, `distance`,
+        `point_state`, `update_time`)
+        VALUES
+        <foreach collection="list" item="point" index="index" separator=",">
+            (
+            #{point.areaId},
+            #{point.pointName},
+            #{point.nextPoint},
+            #{point.pointX},
+            #{point.pointY},
+            #{point.pointH},
+            #{point.distance},
+            #{point.pointState},
+            #{point.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <select id="getPointsByAreaId" parameterType="java.lang.Integer" resultType="com.perry.cnms.entity.Point">
+        select point_id,area_id,point_name,next_point,point_x,point_y,point_h,distance,point_state,update_time
+        from point_table
+        where area_id=#{areaId}
+        order by point_name
+    </select>
+    <select id="getPoint" resultType="com.perry.cnms.entity.Point">
+        select point_id,area_id,point_name,next_point,point_x,point_y,point_h,distance,point_state,update_time
+        from point_table
+        <if test="pointId !=null">where point_id=#{pointId}</if>
+        <if test="pointName !=null">where point_name=#{pointName}</if>
+    </select>
+
+    <update id="updatePoint" parameterType="com.perry.cnms.entity.Point">
+        update `point_table`
+        <set>
+            <if test="pointX !=null">point_x=#{pointX},</if>
+            <if test="pointY !=null">point_y=#{pointY},</if>
+            <if test="pointH !=null">point_h=#{pointH},</if>
+            <if test="distance !=null">distance=#{distance},</if>
+            <if test="updateTime !=null">update_time=#{updateTime}</if>
+        </set>
+        where `point_id` = #{pointId};
+    </update>
+
+    <delete id="deletePointByAreaId" parameterType="java.lang.Integer">
+      delete from point_table where area_id=#{areaId}
+    </delete>
+
+</mapper>

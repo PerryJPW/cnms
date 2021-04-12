@@ -1,0 +1,39 @@
+.row-point {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+}
+
+.row-point:last-child {
+    border-bottom: 1px solid #999;
+}
+
+.point-name {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.point-wrap a {
+
+}
+
+.area-img {
+    overflow: scroll;
+    height: 100px;
+}
+
+.point-text {
+    overflow-x: auto;
+}
+
+.edit-box {
+    background-color: aliceblue;
+}
+
+.data-box {
+    background-color: lightblue;
+}
+
+.name {
+    color: orange;
+}

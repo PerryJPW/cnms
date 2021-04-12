@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perry.cnms.dao.StudentDao">
+
+    <!--Group -->
+    <insert id="batchInsertGroup" parameterType="java.util.List">
+
+        insert into `group_table`(`teacher_id`, `group_account`, `password`, `major_code`, `group_code`, `group_state`,
+        `update_time`)
+        values
+        <foreach collection="list" item="group" index="index" separator=",">
+            (
+            #{group.teacherId},
+            #{group.groupAccount},
+            #{group.password},
+            #{group.majorCode},
+            #{group.groupCode},
+            #{group.groupState},
+            #{group.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--合并到queryGroup中-->
+    <!--<select id="queryGroupByTeacherId" parameterType="java.lang.Integer" resultType="com.perry.cnms.entity.Group">-->
+    <!--select `group_id`,`teacher_id`, `group_account`, `password`, `major_code`, `group_code`, `group_state`, `update_time`-->
+    <!--from group_table-->
+    <!--where teacher_id=#{teacherId} and group_state!=0-->
+    <!--order by group_account-->
+    <!--</select>-->
+
+    <select id="queryGroup" resultType="com.perry.cnms.entity.Group">
+        select `group_id`,`teacher_id`, `group_account`, `password`, `major_code`, `group_code`, `group_state`,
+        `update_time`
+        from group_table
+        where group_state not like #{notGroupState} and group_state != 99
+        <if test="teacherId !=null">and teacher_id=#{teacherId}</if>
+        <if test="groupAccount !=null">and group_account=#{groupAccount}</if>
+        <if test="groupId !=null">and group_id=#{groupId}</if>
+
+        order by group_account
+    </select>
+
+    <select id="queryGroupIdByMajorCode" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select group_id
+        from `group_table`
+        where major_code=#{majorCode}
+    </select>
+
+    <select id="queryNoneHistoryMajorCodeByTeacherId" parameterType="java.lang.Integer"
+            resultType="com.perry.cnms.entity.Group">
+
+        SELECT *
+        FROM group_table
+        WHERE group_id in
+          (select max(group_id) from `group_table`
+          where teacher_id=#{teacherId} and group_state!=99 GROUP BY major_code)
+
+    </select>
+
+    <select id="queryNoneAreaMajorCodeByTeacherId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select distinct major_code
+        from `group_table`
+        where teacher_id=#{teacherId} and group_state=1
+    </select>
+
+
+    <update id="updateGroup" parameterType="com.perry.cnms.entity.Group">
+        update `group_table`
+        <set>
+            <if test="password !=null">password=#{password},</if>
+            <if test="groupState !=null">group_state=#{groupState},</if>
+            <if test="updateTime !=null">update_time=#{updateTime}</if>
+        </set>
+        where `group_id` = #{groupId};
+    </update>
+
+    <delete id="deleteGroup">
+        delete from group_table
+        <if test="groupId !=null">where group_id=#{groupId}</if>
+        <if test="majorCode !=null">where major_code=#{majorCode}</if>
+    </delete>
+
+    <!--Picture-->
+    <select id="queryStudentPicture" resultType="com.perry.cnms.entity.StudentPicture">
+        select `picture_id`, `group_id`, `picture_address`, `picture_state`, `update_time`
+        from student_picture_table
+        <if test="groupId !=null">where group_id=#{groupId}</if>
+
+    </select>
+
+    <insert id="insertStudentPicture" parameterType="com.perry.cnms.entity.StudentPicture">
+        insert into `student_picture_table`(`group_id`, `picture_address`, `picture_state`, `update_time`)
+        values (#{groupId}, #{pictureAddress}, #{pictureState}, #{updateTime})
+
+    </insert>
+
+    <update id="updateStudentPicture" parameterType="com.perry.cnms.entity.StudentPicture">
+        update `student_picture_table`
+        <set>
+            <if test="groupId !=null">group_id=#{groupId},</if>
+            <if test="pictureAddress !=null">picture_address=#{pictureAddress},</if>
+            <if test="pictureState !=null">picture_state=#{pictureState},</if>
+            <if test="updateTime !=null">update_time=#{updateTime}</if>
+        </set>
+        where `picture_id` = #{pictureId};
+    </update>
+
+    <!--Data-->
+    <insert id="insertStudentData" parameterType="java.util.List">
+        insert into `student_data_table`(`group_id`, `point_id`, `point_x`, `tolerate_x` ,
+        `point_y`, `tolerate_y`, `point_h`, `tolerate_h`, `student_data_state`, `update_time`)
+        values
+        <foreach collection="list" item="data" index="index" separator=",">
+            (
+            #{data.groupId},
+            #{data.pointId},
+            #{data.pointX},
+            #{data.tolerateX},
+            #{data.pointY},
+            #{data.tolerateY},
+            #{data.pointH},
+            #{data.tolerateH},
+            #{data.studentDataState},
+            #{data.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryStudentData" resultType="com.perry.cnms.entity.StudentData">
+        select `student_data_id`, `group_id`, `point_id`, `point_x`,`tolerate_x`, `point_y`,`tolerate_y`,
+         `point_h`,`tolerate_h`, `student_data_state`, `update_time`
+        from student_data_table
+        where group_id=#{groupId}
+        order by point_id
+    </select>
+
+    <delete id="deleteStudentDataByGroupId">
+      delete from student_data_table where group_id=#{groupId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,25 @@
+.row-teacher {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+}
+
+.row-teacher:last-child {
+    border-bottom: 1px solid #999;
+}
+
+.teacher-name {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.teacher-wrap a {
+
+}
+.teacher-input{
+    width: 100%;
+}
+
+.edit-box{
+    background-color: aliceblue;
+}

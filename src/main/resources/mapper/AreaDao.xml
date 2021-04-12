@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.perry.cnms.dao.AreaDao">
+    <select id="queryArea" resultType="com.perry.cnms.entity.Area">
+        select area_id,area_name,area_picture_address,area_state,update_time
+        from area_table
+    </select>
+
+    <insert id="batchInsertArea" parameterType="java.util.List">
+        INSERT INTO `area_table`(`area_name`, `area_picture_address`, `area_state`, `update_time`)
+        VALUES
+        <foreach collection="list" item="area" index="index" separator=",">
+            (
+            #{area.areaName},
+            #{area.areaPictureAddress},
+            #{area.areaState},
+            #{area.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateArea" parameterType="com.perry.cnms.entity.Area">
+        UPDATE `area_table`
+        <set>
+            <if test="areaName !=null">area_name=#{areaName},</if>
+            <if test="areaPictureAddress !=null">area_picture_address=#{areaPictureAddress},</if>
+            <if test="areaState !=null">area_state=#{areaState},</if>
+            <if test="updateTime !=null">update_time=#{updateTime}</if>
+        </set>
+        where area_id=#{areaId}
+    </update>
+
+    <select id="getAreaIdByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select area_id
+        from area_table
+        where area_name=#{name}
+    </select>
+
+    <select id="getAreaById" parameterType="java.lang.Integer" resultType="com.perry.cnms.entity.Area">
+        select area_id,area_name,area_picture_address,area_state,update_time
+        from area_table
+        where area_id=#{areaId}
+    </select>
+
+    <delete id="deleteArea">
+      delete from area_table where area_id=#{areaId}
+    </delete>
+
+</mapper>

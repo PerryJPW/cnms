@@ -1,0 +1,26 @@
+.row-area {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+}
+
+.row-area:last-child {
+    border-bottom: 1px solid #999;
+}
+
+.area-name {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.area-wrap a {
+
+}
+
+.edit-box{
+    background-color: aliceblue;
+}
+
+.name {
+    color: orange;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>控制网管理系统(T)</title>
+    <meta name="description" content="MSUI: Build mobile apps with simple HTML, CSS, and JS components.">
+    <meta name="author" content="Perry">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/resources/image/favicon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Google Web Fonts -->
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/resources/css/teacher/TeacherDataManage.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div id="page-label-input" class="page">
+        <header class="bar bar-nav">
+            <a class="icon icon-app pull-left open-panel" data-panel=".panel-left"></a>
+            <h1 class="title">文件信息</h1>
+        </header>
+        <div class="content">
+            <div class="content-block-title">文件列表</div>
+            <div class="content-block">
+                <div class="row row-teacher">
+                    <div class="col-25">名称</div>
+                    <div class="col-25">状态</div>
+                    <div class="col-25">时间</div>
+                    <div class="col-25">文件操作</div>
+                </div>
+                <div class="teacher-wrap">
+
+                </div>
+            </div>
+
+            <div class="content-block-title">文件上传</div>
+            <div class="list-block">
+                <ul>
+                    <!-- 图片上传控件 -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">文件</div>
+                                <div class="item-input">
+                                    <input type="file" id="teacher-data-file" accept="application/zip,.rar" alt="text">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">状态</div>
+                                <div class="item-input">
+                                    <select id="teacher-data-state">
+                                        <option data-id="0" hidden>不可用</option>
+                                        <option data-id="1" selected>自动下发</option>
+                                        <option data-id="2" hidden>手动下发</option>
+                                        <option data-id="3" disabled hidden>系统异常</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!--验证码，kaptcha-->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">验证码</div>
+                                <input type="text" id="j_captcha" placeholder="验证码">
+                                <div class="item-input " id="captcha_img1">
+                                    <img id="captcha_img" alt="点击更换" title="点击更换" onclick="changeVerifyCode(this)"
+                                         src="/Kaptcha"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <!--<div class="col-50"><a href="#" class="button button-big button-fill button-danger">返回</a></div>-->
+                    <div class="col-100"><a href="#" class="button button-big button-fill button-success"
+                                            id="submit">添加</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--</div>-->
+    <div class="panel-overlay"></div>
+    <!-- Left Panel with Reveal effect -->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p id="teacher-name" class="name">姓名</p>
+            <p></p>
+            <p><a href="/teacher/student-manage" class="close-panel">小组管理</a></p>
+            <p></p>
+            <p><a href="/teacher/area-manage" class="close-panel">场地申请</a></p>
+            <p></p>
+            <p><a href="/teacher/file-manage" class="close-panel">文件管理</a></p>
+            <p></p>
+            <p><a href="#" class="prompt-title-ok">密码修改</a></p>
+            <p></p>
+            <!-- Click on link with "close-panel" class will close panel -->
+            <p><a href="#" class="close-panel">关闭</a></p>
+        </div>
+    </div>
+
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='/resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='/resources/js/teacher/TeacherDataManage.js' charset='utf-8'></script>
+</body>
+</html>
